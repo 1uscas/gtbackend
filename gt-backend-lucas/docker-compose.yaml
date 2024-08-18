@@ -1,0 +1,22 @@
+services:
+  api:
+    build: ./
+    depends_on:
+      - database
+    container_name: api
+    ports:
+     - 80:80
+    volumes: 
+     - .:/app
+    
+  database:
+    image: mysql
+    container_name: database
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_USER: mysql
+      MYSQL_DATABASE: ecommerce
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    ports:
+      - 3306:3306
